@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NEOCC Cybersecurity & Privacy Job Resource</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f7f7f5;
+    --surface: #ffffff;
+    --surface2: #f0f0ec;
+    --border: #e2e2db;
+    --border2: #d0d0c8;
+    --text: #1a1a18;
+    --text2: #5a5a54;
+    --text3: #8a8a82;
+    --accent: #1a4f8a;
+    --accent-light: #e8f0f9;
+    --accent-mid: #3a6faa;
+    --green: #1a6b45;
+    --green-light: #e6f4ee;
+    --amber: #7a4a0a;
+    --amber-light: #fdf3e3;
+    --purple: #4a3a8a;
+    --purple-light: #eeedfb;
+    --red: #8a2020;
+    --red-light: #faeaea;
+    --teal: #0e5c5c;
+    --teal-light: #e3f4f4;
+    --font: 'IBM Plex Sans', sans-serif;
+    --mono: 'IBM Plex Mono', monospace;
+    --radius: 6px;
+    --radius-lg: 10px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: var(--font);
+    background: var(--bg);
+    color: var(--text);
+    font-size: 14px;
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+  /* HEADER */
+  .header {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 24px 32px 20px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .header-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .header-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 16px;
+  }
+  .logo-block {}
+  .logo-tag {
+    font-family: var(--mono);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    background: var(--accent-light);
+    padding: 3px 8px;
+    border-radius: 3px;
+    display: inline-block;
+    margin-bottom: 6px;
+  }
+  h1 {
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--text);
+    line-height: 1.25;
+  }
+  .header-sub {
+    font-size: 13px;
+    color: var(--text2);
+    margin-top: 4px;
+    max-width: 620px;
+  }
+  .updated-tag {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text3);
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    padding: 4px 10px;
+    border-radius: var(--radius);
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  /* NAV TABS */
+  .nav-tabs {
+    display: flex;
+    gap: 2px;
+    border-bottom: 2px solid var(--border);
+    margin-bottom: 0;
+  }
+  .nav-tab {
+    padding: 8px 18px;
+    font-size: 13px;
+    font-weight: 500;
+    font-family: var(--font);
+    cursor: pointer;
+    background: transparent;
+    color: var(--text3);
+    border: none;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -2px;
+    transition: color 0.15s, border-color 0.15s;
+  }
+  .nav-tab:hover { color: var(--text2); }
+  .nav-tab.active { color: var(--accent); border-bottom-color: var(--accent); }
+  /* MAIN */
+  .main {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 24px 32px 48px;
+  }
+  .panel { display: none; }
+  .panel.active { display: block; }
+  /* FILTERS */
+  .filters {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 16px 20px;
+    margin-bottom: 16px;
+  }
+  .cat-pills {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    margin-bottom: 12px;
+  }
+  .pill {
+    padding: 5px 13px;
+    font-size: 12px;
+    font-weight: 500;
+    font-family: var(--font);
+    border: 1px solid var(--border2);
+    border-radius: 20px;
+    cursor: pointer;
+    background: var(--surface);
+    color: var(--text2);
+    transition: all 0.12s;
+  }
+  .pill:hover { border-color: var(--accent); color: var(--accent); }
+  .pill.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+  .filter-row {
+    display: grid;
+    grid-template-columns: 1fr 180px 180px;
+    gap: 8px;
+  }
+  .filter-row input,
+  .filter-row select {
+    font-family: var(--font);
+    font-size: 13px;
+    padding: 7px 12px;
+    border: 1px solid var(--border2);
+    border-radius: var(--radius);
+    background: var(--bg);
+    color: var(--text);
+    outline: none;
+    transition: border-color 0.12s;
+  }
+  .filter-row input:focus,
+  .filter-row select:focus { border-color: var(--accent); }
+  /* STATS BAR */
+  .stats-bar {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 16px;
+    align-items: center;
+  }
+  .stat-chip {
+    font-size: 12px;
+    color: var(--text2);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 4px 11px;
+  }
+  .stat-chip strong { color: var(--text); font-weight: 600; }
+  /* JOB GRID */
+  .job-grid { display: grid; gap: 8px; }
+  .job-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 16px 18px;
+    transition: border-color 0.12s, box-shadow 0.12s;
+  }
+  .job-card:hover {
+    border-color: var(--border2);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  }
+  .job-card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 7px;
+  }
+  .job-title-block {}
+  .job-title {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text);
+    line-height: 1.3;
+  }
+  .job-org {
+    font-size: 12px;
+    color: var(--text2);
+    margin-top: 2px;
+  }
+  .badge-row { display: flex; gap: 5px; flex-wrap: wrap; flex-shrink: 0; }
+  .badge {
+    font-size: 10px;
+    font-weight: 600;
+    font-family: var(--mono);
+    padding: 2px 7px;
+    border-radius: 3px;
+    white-space: nowrap;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+  .b-intern { background: var(--green-light); color: var(--green); }
+  .b-entry  { background: var(--accent-light); color: var(--accent); }
+  .b-mid    { background: var(--purple-light); color: var(--purple); }
+  .b-senior { background: var(--amber-light); color: var(--amber); }
+  .b-exec   { background: var(--red-light); color: var(--red); }
+  .b-tech   { background: #eaf3de; color: #27500a; }
+  .b-grc    { background: #fbeaf0; color: #72243e; }
+  .b-priv   { background: var(--amber-light); color: var(--amber); }
+  .b-adj    { background: var(--teal-light); color: var(--teal); }
+  .job-desc {
+    font-size: 13px;
+    color: var(--text2);
+    line-height: 1.65;
+    margin-bottom: 10px;
+  }
+  .job-links { display: flex; gap: 6px; flex-wrap: wrap; }
+  .job-link {
+    font-size: 11px;
+    font-weight: 500;
+    padding: 4px 11px;
+    border-radius: var(--radius);
+    text-decoration: none;
+    transition: all 0.12s;
+    border: 1px solid var(--border2);
+    color: var(--text2);
+    background: var(--surface);
+  }
+  .job-link:hover { border-color: var(--accent); color: var(--accent); }
+  .job-link.primary {
+    background: var(--accent-light);
+    color: var(--accent);
+    border-color: #b8ccde;
+  }
+  .job-link.primary:hover { background: var(--accent); color: #fff; }
+  .no-results {
+    text-align: center;
+    padding: 48px 20px;
+    color: var(--text3);
+    font-size: 14px;
+  }
+  /* DIRECTORY */
+  .dir-filters {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 16px 20px;
+    margin-bottom: 16px;
+    display: grid;
+    grid-template-columns: 1fr 220px;
+    gap: 8px;
+  }
+  .dir-filters input,
+  .dir-filters select {
+    font-family: var(--font);
+    font-size: 13px;
+    padding: 7px 12px;
+    border: 1px solid var(--border2);
+    border-radius: var(--radius);
+    background: var(--bg);
+    color: var(--text);
+    outline: none;
+    transition: border-color 0.12s;
+  }
+  .dir-filters input:focus,
+  .dir-filters select:focus { border-color: var(--accent); }
+  .dir-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 8px;
+  }
+  .dir-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 14px 16px;
+    transition: border-color 0.12s;
+  }
+  .dir-card:hover { border-color: var(--border2); }
+  .dir-name {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 2px;
+  }
+  .dir-sector {
+    font-size: 11px;
+    font-family: var(--mono);
+    color: var(--text3);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 10px;
+  }
+  .dir-links { display: flex; gap: 5px; flex-wrap: wrap; }
+  .dir-link {
+    font-size: 11px;
+    font-weight: 500;
+    padding: 3px 10px;
+    border-radius: var(--radius);
+    text-decoration: none;
+    border: 1px solid var(--border2);
+    color: var(--text2);
+    transition: all 0.12s;
+  }
+  .dir-link:hover { border-color: var(--accent); color: var(--accent); }
+  .dir-link.primary {
+    background: var(--accent-light);
+    color: var(--accent);
+    border-color: #b8ccde;
+  }
+  .dir-link.primary:hover { background: var(--accent); color: #fff; }
+  /* FOOTER */
+  .footer {
+    border-top: 1px solid var(--border);
+    padding: 20px 32px;
+    text-align: center;
+    font-size: 12px;
+    color: var(--text3);
+    background: var(--surface);
+  }
+  .footer a { color: var(--accent); text-decoration: none; }
+  .footer a:hover { text-decoration: underline; }
+  /* RESPONSIVE */
+  @media (max-width: 680px) {
+    .header { padding: 16px 16px 14px; }
+    .main { padding: 16px 16px 32px; }
+    .filter-row { grid-template-columns: 1fr 1fr; }
+    .filter-row input { grid-column: 1/-1; }
+    .dir-filters { grid-template-columns: 1fr; }
+    .header-top { flex-direction: column; gap: 8px; }
+    .job-card-top { flex-direction: column; }
+  }
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div class="header-inner">
+    <div class="header-top">
+      <div class="logo-block">
+        <div class="logo-tag">Northeast Ohio CyberConsortium — Voting Members</div>
+        <h1>Cybersecurity &amp; Privacy Job Resource</h1>
+        <p class="header-sub">Security, GRC, privacy, and security-adjacent roles across 30 NEOCC voting member organizations. Entry-level roles and internships highlighted for students and career changers.</p>
+      </div>
+      <div class="updated-tag" id="updated-tag">Updated: loading...</div>
+    </div>
+    <nav class="nav-tabs">
+      <button class="nav-tab active" onclick="switchPanel('jobs', this)">Job listings</button>
+      <button class="nav-tab" onclick="switchPanel('directory', this)">Employer directory</button>
+    </nav>
+  </div>
+</header>
+
+<main class="main">
+
+  <!-- JOBS PANEL -->
+  <div id="jobs" class="panel active">
+    <div class="filters">
+      <div class="cat-pills" id="cat-pills">
+        <button class="pill active" onclick="setCat('all',this)">All roles</button>
+        <button class="pill" onclick="setCat('tech',this)">Technical</button>
+        <button class="pill" onclick="setCat('grc',this)">GRC / compliance</button>
+        <button class="pill" onclick="setCat('privacy',this)">Privacy</button>
+        <button class="pill" onclick="setCat('adj',this)">Security-adjacent</button>
+        <button class="pill" onclick="setCat('intern',this)">Internships</button>
+      </div>
+      <div class="filter-row">
+        <input type="text" id="q" placeholder="Search title, organization, keyword..." oninput="renderJobs()">
+        <select id="seniority" onchange="renderJobs()">
+          <option value="all">All seniority levels</option>
+          <option value="Internship">Internship</option>
+          <option value="Entry">Entry level</option>
+          <option value="Mid">Mid level</option>
+          <option value="Senior">Senior</option>
+          <option value="Executive">Executive / Director</option>
+        </select>
+        <select id="sort" onchange="renderJobs()">
+          <option value="title">Sort: title A–Z</option>
+          <option value="org">Sort: organization A–Z</option>
+          <option value="seniority">Sort: seniority (junior first)</option>
+          <option value="sector">Sort: sector</option>
+        </select>
+      </div>
+    </div>
+    <div class="stats-bar" id="job-stats"></div>
+    <div class="job-grid" id="job-grid"></div>
+  </div>
+
+  <!-- DIRECTORY PANEL -->
+  <div id="directory" class="panel">
+    <div class="dir-filters">
+      <input type="text" id="dq" placeholder="Search organization or sector..." oninput="renderDir()">
+      <select id="dsector" onchange="renderDir()">
+        <option value="all">All sectors</option>
+        <option value="Financial Services">Financial services</option>
+        <option value="Food Service / Retail">Food service / retail</option>
+        <option value="Government">Government</option>
+        <option value="Healthcare">Healthcare</option>
+        <option value="Higher Education">Higher education</option>
+        <option value="Home Services">Home services</option>
+        <option value="Insurance">Insurance</option>
+        <option value="Legal">Legal</option>
+        <option value="Manufacturing">Manufacturing</option>
+        <option value="Nonprofit">Nonprofit</option>
+        <option value="Software / Technology">Software / technology</option>
+        <option value="Utilities / Energy">Utilities / energy</option>
+      </select>
+    </div>
+    <div class="stats-bar" id="dir-stats"></div>
+    <div class="dir-grid" id="dir-grid"></div>
+  </div>
+
+</main>
+
+<footer class="footer">
+  Resource maintained by the <a href="https://neocc.us" target="_blank">Northeast Ohio CyberConsortium</a>.
+  Links go to official employer career pages and public job search platforms.
+  Listings reflect typical roles; actual openings vary. Check employer career pages for current postings.
+</footer>
+
+<script>
+// ─── LAST UPDATED ───────────────────────────────────────────────
+const LAST_UPDATED = "April 7, 2025";
+document.getElementById('updated-tag').textContent = "Updated: " + LAST_UPDATED;
+
+// ─── DATA ───────────────────────────────────────────────────────
+const SO = {Internship:0, Entry:1, Mid:2, Senior:3, Executive:4};
+
+const employers = [
+  {name:"Allied Machine & Engineering",       sector:"Manufacturing",       career:"https://www.alliedmachine.com/company/careers/",                              li:"https://www.linkedin.com/company/allied-machine-engineering/jobs",        indeed:"https://www.indeed.com/cmp/Allied-Machine-and-Engineering"},
+  {name:"Applied Industrial Technologies",    sector:"Manufacturing",       career:"https://jobs.applied.com/us/en",                                              li:"https://www.linkedin.com/company/applied-industrial-technologies/jobs",   indeed:"https://www.indeed.com/cmp/Applied-Industrial-Technologies"},
+  {name:"Avient Corporation",                 sector:"Manufacturing",       career:"https://jobs.avient.com/",                                                    li:"https://www.linkedin.com/company/avient/jobs",                            indeed:"https://www.indeed.com/cmp/Avient-Corporation"},
+  {name:"BakerHostetler",                     sector:"Legal",               career:"https://www.bakerlaw.com/careers/professional-staff/open-positions/",         li:"https://www.linkedin.com/company/bakerhostetler/jobs",                   indeed:"https://www.indeed.com/cmp/Baker-Hostetler"},
+  {name:"Case Western Reserve University",    sector:"Higher Education",    career:"https://case.edu/jobs/",                                                      li:"https://www.linkedin.com/school/case-western-reserve-university/jobs",   indeed:"https://www.indeed.com/cmp/Case-Western-Reserve-University"},
+  {name:"Centers for Families and Children",  sector:"Nonprofit",           career:"https://www.cfcadvances.org/careers/",                                        li:"https://www.linkedin.com/company/centers-for-families-and-children/jobs",indeed:"https://www.indeed.com/cmp/Centers-for-Families-and-Children"},
+  {name:"City of Cleveland",                  sector:"Government",          career:"https://www.governmentjobs.com/careers/cleveland",                            li:"https://www.linkedin.com/company/city-of-cleveland/jobs",                indeed:"https://www.indeed.com/jobs?q=city+of+cleveland+IT+security"},
+  {name:"Cleveland Clinic",                   sector:"Healthcare",          career:"https://jobs.clevelandclinic.org/it-and-cyber-security/",                     li:"https://www.linkedin.com/company/cleveland-clinic/jobs",                 indeed:"https://www.indeed.com/cmp/Cleveland-Clinic"},
+  {name:"Cleveland-Cliffs",                   sector:"Manufacturing",       career:"https://careers.clevelandcliffs.com/",                                        li:"https://www.linkedin.com/company/cleveland-cliffs/jobs",                 indeed:"https://www.indeed.com/cmp/Cleveland-cliffs"},
+  {name:"Cuyahoga Community College (Tri-C)", sector:"Higher Education",    career:"https://www.tri-c.edu/about-tri-c/administrative-departments/human-resources/employment/", li:"https://www.linkedin.com/school/cuyahoga-community-college/jobs", indeed:"https://www.indeed.com/cmp/Cuyahoga-Community-College"},
+  {name:"Eaton Corporation",                  sector:"Manufacturing",       career:"https://eaton.eightfold.ai/careers",                                          li:"https://www.linkedin.com/company/eaton/jobs",                            indeed:"https://www.indeed.com/cmp/Eaton"},
+  {name:"Erie Insurance",                     sector:"Insurance",           career:"https://careers.erieinsurance.com/",                                          li:"https://www.linkedin.com/company/erie-insurance/jobs",                   indeed:"https://www.indeed.com/cmp/Erie-Insurance"},
+  {name:"First Mutual Holding Company",       sector:"Financial Services",  career:"https://www.firstmutualholding.com/join-our-team/",                           li:"https://www.linkedin.com/company/first-mutual-holding-co/jobs",          indeed:"https://www.indeed.com/cmp/First-Mutual-Holding-Company"},
+  {name:"FirstEnergy",                        sector:"Utilities / Energy",  career:"https://careers.firstenergycorp.com/",                                        li:"https://www.linkedin.com/company/firstenergy/jobs",                      indeed:"https://www.indeed.com/cmp/Firstenergy"},
+  {name:"Flynn Group",                        sector:"Food Service / Retail",career:"https://flynnrgcareers.com/jobs",                                            li:"https://www.linkedin.com/company/flynn-restaurant-group/jobs",           indeed:"https://www.indeed.com/cmp/Flynn-Group-5"},
+  {name:"Goodyear",                           sector:"Manufacturing",       career:"https://jobs.goodyear.com/",                                                  li:"https://www.linkedin.com/company/goodyear/jobs",                         indeed:"https://www.indeed.com/cmp/Goodyear"},
+  {name:"Hyland",                             sector:"Software / Technology",career:"https://careers-hyland.icims.com/jobs/intro",                                li:"https://www.linkedin.com/company/hyland-software/jobs",                  indeed:"https://www.indeed.com/cmp/Hyland-Software"},
+  {name:"KeyBank",                            sector:"Financial Services",  career:"https://careers.key.com/",                                                    li:"https://www.linkedin.com/company/keybank/jobs",                          indeed:"https://www.indeed.com/cmp/Keybank"},
+  {name:"Kinetico",                           sector:"Manufacturing",       career:"https://www.kinetico.com/about-us/careers/",                                  li:"https://www.linkedin.com/company/kinetico/jobs",                         indeed:"https://www.indeed.com/cmp/Kinetico"},
+  {name:"Leaf Home",                          sector:"Home Services",       career:"https://www.leafhome.com/careers",                                            li:"https://www.linkedin.com/company/leaf-home/jobs",                        indeed:"https://www.indeed.com/cmp/Leaf-Home"},
+  {name:"Lincoln Electric",                   sector:"Manufacturing",       career:"https://jobs.lincolnelectric.com/",                                           li:"https://www.linkedin.com/company/lincoln-electric/jobs",                 indeed:"https://www.indeed.com/cmp/Lincoln-Electric"},
+  {name:"MetroHealth",                        sector:"Healthcare",          career:"https://careers.metrohealth.org/",                                            li:"https://www.linkedin.com/company/metrohealth/jobs",                      indeed:"https://www.indeed.com/cmp/Metrohealth"},
+  {name:"Progressive Insurance",              sector:"Insurance",           career:"https://careers.progressive.com/",                                            li:"https://www.linkedin.com/company/progressive-insurance/jobs",            indeed:"https://www.indeed.com/cmp/Progressive"},
+  {name:"ReliabilityFirst",                   sector:"Utilities / Energy",  career:"https://www.rfirst.org/careers/",                                             li:"https://www.linkedin.com/company/reliabilityfirst-corporation/jobs",     indeed:"https://www.indeed.com/cmp/Reliabilityfirst"},
+  {name:"Sherwin-Williams",                   sector:"Manufacturing",       career:"https://jobsearch.sherwin.com/",                                              li:"https://www.linkedin.com/company/sherwin-williams/jobs",                 indeed:"https://www.indeed.com/cmp/Sherwin-williams"},
+  {name:"Sisters of Charity Health System",   sector:"Healthcare",          career:"https://www.sistersofcharityhealth.org/careers/",                             li:"https://www.linkedin.com/company/sisters-of-charity-health-system/jobs", indeed:"https://www.indeed.com/cmp/Sisters-of-Charity-Health-System"},
+  {name:"Steris",                             sector:"Healthcare",          career:"https://jobs.steris.com/",                                                    li:"https://www.linkedin.com/company/steris/jobs",                           indeed:"https://www.indeed.com/cmp/Steris"},
+  {name:"Third Federal Savings and Loan",     sector:"Financial Services",  career:"https://www.thirdfederal.com/about-us/careers",                               li:"https://www.linkedin.com/company/third-federal-savings-and-loan/jobs",   indeed:"https://www.indeed.com/cmp/Third-Federal-Savings-and-Loan"},
+  {name:"University Hospitals",               sector:"Healthcare",          career:"https://careers.uhhospitals.org/",                                            li:"https://www.linkedin.com/company/university-hospitals-health-system/jobs",indeed:"https://www.indeed.com/cmp/University-Hospitals"},
+  {name:"Youngstown State University",        sector:"Higher Education",    career:"https://jobs.ysu.edu/",                                                       li:"https://www.linkedin.com/school/youngstown-state-university/jobs",       indeed:"https://www.indeed.com/cmp/Youngstown-State-University"},
+];
+
+const jobs = [
+  // CLEVELAND CLINIC
+  {title:"Cybersecurity Analyst Intern", org:"Cleveland Clinic", sector:"Healthcare", cat:"intern", seniority:"Internship", type:"Tech", desc:"Paid summer internship on the Cleveland Clinic IT & Cybersecurity team. Supports SOC monitoring, incident triage, and security tooling. Excellent entry point into healthcare cybersecurity for IT or cyber students.", career:"https://jobs.clevelandclinic.org/it-and-cyber-security/", boards:[{n:"Cleveland Clinic IT & Cyber",u:"https://jobs.clevelandclinic.org/it-and-cyber-security/"},{n:"Indeed",u:"https://www.indeed.com/jobs?q=cleveland+clinic+cybersecurity+intern"},{n:"LinkedIn",u:"https://www.linkedin.com/jobs/search/?keywords=cleveland+clinic+cybersecurity+intern"}]},
+  {title:"Cybersecurity Specialist", org:"Cleveland Clinic", sector:"Healthcare", cat:"tech", seniority:"Mid", type:"Tech", desc:"Manages third-party and supplier risk, business continuity planning, and security operations. Works across IT, clinical, and financial systems. HIPAA security compliance is a core responsibility.", career:"https://jobs.clevelandclinic.org/it-and-cyber-security/", boards:[{n:"Cleveland Clinic Careers",u:"https://jobs.clevelandclinic.org/it-and-cyber-security/"},{n:"Indeed",u:"https://www.indeed.com/cmp/Cleveland-Clinic/job-titles/CyberSecurity-Specialist"},{n:"LinkedIn",u:"https://www.linkedin.com/jobs/search/?keywords=cleveland+clinic+cybersecurity+specialist"}]},
+  {title:"Sr. Cybersecurity Specialist — Red Team", org:"Cleveland Clinic", sector:"Healthcare", cat:"tech", seniority:"Senior", type:"Tech", desc:"Senior offensive security role conducting penetration testing and red team operations across Cleveland Clinic's enterprise. Requires substantial pen testing experience.", career:"https://jobs.clevelandclinic.org/it-and-cyber-security/", boards:[{n:"Cleveland Clinic Careers",u:"https://jobs.clevelandclinic.org/it-and-cyber-security/"},{n:"Glassdoor",u:"https://www.glassdoor.com/Jobs/Cleveland-Clinic-cyber-security-Jobs-EI_IE17787.0,16_KO17,31.htm"}]},
+  {title:"Internal Auditor — IT/Cyber", org:"Cleveland Clinic", sector:"Healthcare", cat:"grc", seniority:"Mid", type:"GRC", desc:"Evaluates technology controls, security risks, and compliance frameworks within the Cleveland Clinic system. CIA or CISA certification valued.", career:"https://jobs.clevelandclinic.org/it-and-cyber-security/", boards:[{n:"Cleveland Clinic Careers",u:"https://jobs.clevelandclinic.org/it-and-cyber-security/"},{n:"LinkedIn",u:"https://www.linkedin.com/jobs/search/?keywords=cleveland+clinic+IT+audit"}]},
+  // PROGRESSIVE
+  {title:"Cybersecurity Intern", org:"Progressive Insurance", sector:"Insurance", cat:"intern", seniority:"Internship", type:"Tech", desc:"Progressive's technology internship program includes cybersecurity tracks. Interns work on real projects with experienced teams and have a strong pipeline to full-time offers.", career:"https://careers.progressive.com/", boards:[{n:"Progressive Careers",u:"https://careers.progressive.com/search/jobs/?keyword=cybersecurity+intern"},{n:"Handshake",u:"https://joinhandshake.com/jobs/?query=progressive+insurance+cybersecurity+intern"},{n:"LinkedIn",u:"https://www.linkedin.com/jobs/search/?keywords=progressive+insurance+cybersecurity+intern"}]},
+  {title:"Information Security Analyst", org:"Progressive Insurance", sector:"Insurance", cat:"tech", seniority:"Entry", type:"Tech", desc:"Entry-level security role in Progressive's large IT security team. Monitors threats, responds to incidents, and implements security controls. Strong learning culture with clear progression.", career:"https://careers.progressive.com/", boards:[{n:"Progressive Careers",u:"https://careers.progressive.com/search/jobs/?keyword=information+security"},{n:"Indeed",u:"https://www.indeed.com/jobs?q=progressive+insurance+information+security+analyst"},{n:"LinkedIn",u:"https://www.linkedin.com/jobs/search/?keywords=progressive+information+security+analyst"}]},
+  {title:"IT Risk & Compliance Analyst", org:"Progressive Insurance", sector:"Insurance", cat:"grc", seniority:"Mid", type:"GRC", desc:"Manages IT risk and regulatory compliance programs. Assesses control effectiveness and reports risk posture. SOX, NIST, and insurance regulatory knowledge valued.", career:"https://careers.progressive.com/", boards:[{n:"Progressive Careers",u:"https://careers.progressive.com/search/jobs/?keyword=risk+compliance"},{n:"LinkedIn",u:"https://www.linkedin.com/jobs/search/?keywords=progressive+insurance+IT+risk+compliance"}]},
+  // KEYBANK
+  {title:"Cybersecurity Intern", org:"KeyBank", sector:"Financial Services", cat:"intern", seniority:"Internship", type:"Tech", desc:"Summer internship in KeyBank's technology organization. Security-focused interns may support threat monitoring, vulnerability scanning, or security architecture projects.", career:"https://careers.key.com/", boards:[{n:"Key Careers",u:"https://careers.key.com/"},{n:"Handshake",u:"https://joinhandshake.com/jobs/?query=keybank+cybersecurity+intern"},{n:"LinkedIn",u:"https://www.linkedin.com/jobs/search/?keywords=keybank+cybersecurity+intern"}]},
+  {title:"Information Security Analyst", org:"KeyBank", sector:"Financial Services", cat:"tech", seniority:"Entry", type:"Tech", desc:"Entry-level role in KeyBank's Information Security organization. Monitors SIEM, investigates alerts, and supports vulnerability management. Part of KeyBank's 'Digital & Tech Innovators' career track.", career:"https://careers.key.com/", boards:[{n:"Key Careers",u:"https://careers.key.com/"},{n:"LinkedIn",u:"https://www.linkedin.com/jobs/search/?keywords=keybank+information+security+analyst"},{n:"Indeed",u:"https://www.indeed.com/jobs?q=keybank+information+security+analyst"}]},
+  {title:"IT Audit Analyst", org:"KeyBank", sector:"Financial Services", cat:"grc", seniority:"Entry", type:"GRC", desc:"Evaluates technology and cybersecurity controls in a financial services context. SOX ITGC experience valued. Strong path for accounting or IS graduates entering compliance.", career:"https://careers.key.com/", boards:[{n:"Key Careers",u:"https://careers.key.com/"},{n:"LinkedIn",u:"https://www.linkedin.com/jobs/search/?keywords=keybank+IT+audit+analyst"}]},
+  // EATON
+  {title:"Cybersecurity Co-op / Intern", org:"Eaton Corporation", sector:"Manufacturing", cat:"intern", seniority:"Internship", type:"Tech", desc:"Eaton's IT Leadership Development Program begins with a co-op or internship in cybersecurity. The company has a dedicated Attack Surface Management team and actively recruits through this pathway.", career:"https://eaton.eightfold.ai/careers", boards:[{n:"Eaton Careers",u:"https://eaton.eightfold.ai/careers"},{n:"Handshake",u:"https://joinhandshake.com/jobs/?query=eaton+cybersecurity+intern"},{n:"LinkedIn",u:"https://www.linkedin.com/jobs/eaton-cyber-security-jobs"}]},
+  {title:"Network Security Specialist", org:"Eaton Corporation", sector:"Manufacturing", cat:"tech", seniority:"Mid", type:"Tech", desc:"Secures Eaton's enterprise and OT/ICS network environments. Involves firewall configuration, IDS/IPS, and network segmentation across a global industrial company. NERC CIP knowledge a plus.", career:"https://eaton.eightfold.ai/careers", boards:[{n:"Eaton Careers",u:"https://eaton.eightfold.ai/careers"},{n:"LinkedIn",u:"https://www.linkedin.com/jobs/search/?keywords=eaton+network+security+specialist"}]},
+  {title:"OT / ICS Cybersecurity Engineer", org:"Eaton Corporation", sector:"Manufacturing", cat:"tech", seniority:"Senior", type:"Tech", desc:"Secures operational technology and industrial control systems across Eaton's global manufacturing footprint. High-demand niche bridging IT security and engineering disciplines.", career:"https://eaton.eightfold.ai/careers", boards:[{n:"Eaton Careers",u:"https://eaton.eightfold.ai/careers"},{n:"LinkedIn",u:"https://www.linkedin.com/jobs/search/?keywords=eaton+OT+cybersecurity"}]},
+  // FIRSTENERGY
+  {title:"IT / Cybersecurity Co-op / Intern", org:"FirstEnergy", sector:"Utilities / Energy", cat:"intern", seniority:"Internship", type:"Tech", desc:"FirstEnergy's Co-op/Intern Program offers hands-on IT and cybersecurity project experience. Especially relevant for students at partner technical schools and universities in NE Ohio.", career:"https://www.firstenergycorp.com/careers/student_opportunities.html", boards:[{n:"FirstEnergy Student Opps",u:"https://www.firstenergycorp.com/careers/student_opportunities.html"},{n:"Handshake",u:"https://joinhandshake.com/jobs/?query=firstenergy+cybersecurity+intern"},{n:"LinkedIn",u:"https://www.linkedin.com/jobs/search/?keywords=firstenergy+cybersecurity+intern"}]},
+  {title:"Cybersecurity Analyst", org:"FirstEnergy", sector:"Utilities / Energy", cat:"tech", seniority:"Entry", type:"Tech", desc:"Supports cybersecurity operations and NERC CIP compliance at one of the largest U.S. electric utilities. Strong exposure to critical infrastructure protection requirements.", career:"https://careers.firstenergycorp.com/", boards:[{n:"FirstEnergy Careers",u:"https://careers.firstenergycorp.com/"},{n:"LinkedIn",u:"https://www.linkedin.com/jobs/search/?keywords=firstenergy+cybersecurity+analyst"}]},
+  {title:"NERC CIP Compliance Analyst", org:"FirstEnergy", sector:"Utilities / Energy", cat:"grc", seniority:"Mid", type:"GRC", desc:"Manages compliance with NERC Critical Infrastructure Protection standards governing the security of the bulk electric system. Highly specialized role with strong demand in the utility sector.", career:"https://careers.firstenergycorp.com/", boards:[{n:"FirstEnergy Careers",u:"https://careers.firstenergycorp.com/"},{n:"LinkedIn",u:"https://www.linkedin.com/jobs/search/?keywords=firstenergy+NERC+CIP+compliance"}]},
+  // RELIABILITYFIRST
+  {title:"Cyber Security Governance Intern", org:"ReliabilityFirst", sector:"Utilities / Energy", cat:"intern", seniority:"Internship", type:"GRC", desc:"Paid internship in cybersecurity governance, awareness programs, tabletop exercises, and phishing simulations. For cybersecurity, IT, or public policy students. Full-time pathways available.", career:"https://www.rfirst.org/careers/", boards:[{n:"ReliabilityFirst Careers",u:"https://www.rfirst.org/careers/"},{n:"Indeed",u:"https://www.indeed.com/jobs?q=reliabilityfirst+cybersecurity+intern"},{n:"LinkedIn",u:"https://www.linkedin.com/company/reliabilityfirst-corporation/jobs"}]},
+  {title:"Cyber Security Auditor", org:"ReliabilityFirst", sector:"Utilities / Energy", cat:"grc", seniority:"Mid", type:"GRC", desc:"Audits NERC CIP compliance for electric utility companies across 13 states. Reviews security architecture, configuration management, and supply chain controls. One of the most distinctive cyber-GRC roles in Northeast Ohio.", career:"https://www.rfirst.org/careers/", boards:[{n:"ReliabilityFirst Careers",u:"https://www.rfirst.org/careers/"},{n:"Indeed",u:"https://www.indeed.com/jobs?q=reliabilityfirst+cybersecurity+auditor"}]},
+  {title:"Senior Security Analyst", org:"ReliabilityFirst", sector:"Utilities / Energy", cat:"tech", seniority:"Senior", type:"Tech", desc:"Senior technical role in electric grid security. Supports the reliability and security of the bulk power system through monitoring, analysis, and expert guidance to registered utilities.", career:"https://www.rfirst.org/careers/", boards:[{n:"ReliabilityFirst Careers",u:"https://www.rfirst.org/careers/"},{n:"LinkedIn",u:"https://www.linkedin.com/company/reliabilityfirst-corporation/jobs"}]},
+  // SHERWIN-WILLIAMS
+  {title:"Cybersecurity Analyst (SOC)", org:"Sherwin-Williams", sector:"Manufacturing", cat:"tech", seniority:"Entry", type:"Tech", desc:"Entry-level SOC analyst at a Fortune 500 global company headquartered in Cleveland. Sherwin-Williams has a large and active security operations function supporting its worldwide operations.", career:"https://jobsearch.sherwin.com/", boards:[{n:"Sherwin-Williams Careers",u:"https://jobsearch.sherwin.com/"},{n:"Indeed",u:"https://www.indeed.com/jobs?q=sherwin+williams+cybersecurity+analyst"},{n:"LinkedIn",u:"https://www.linkedin.com/jobs/search/?keywords=sherwin-williams+cybersecurity+analyst"}]},
+  {title:"Cybersecurity Lead — Vulnerability Management", org:"Sherwin-Williams", sector:"Manufacturing", cat:"tech", seniority:"Senior", type:"Tech", desc:"Leads vulnerability management across the enterprise. Requires a degree in Computer Science, Information Assurance, or related field plus substantial security operations experience.", career:"https://jobsearch.sherwin.com/", boards:[{n:"Sherwin-Williams Careers",u:"https://jobsearch.sherwin.com/"},{n:"LinkedIn",u:"https://www.linkedin.com/jobs/search/?keywords=sherwin-williams+cybersecurity+lead"}]},
+  // METROHEALTH
+  {title:"Information Security Analyst", org:"MetroHealth", sector:"Healthcare", cat:"tech", seniority:"Entry", type:"Tech", desc:"Entry-level security role at Cuyahoga County's public health system. Supports SIEM monitoring, access control, and HIPAA security compliance.", career:"https://careers.metrohealth.org/", boards:[{n:"MetroHealth Careers",u:"https://careers.metrohealth.org/search/searchjobs"},{n:"LinkedIn",u:"https://www.linkedin.com/jobs/search/?keywords=metrohealth+information+security+analyst"}]},
+  // UNIVERSITY HOSPITALS
+  {title:"Cybersecurity Analyst", org:"University Hospitals", sector:"Healthcare", cat:"tech", seniority:"Entry", type:"Tech", desc:"Supports cybersecurity operations at one of Northeast Ohio's largest health systems. HIPAA security compliance, access management, and incident response are core functions.", career:"https://careers.uhhospitals.org/", boards:[{n:"UH Careers",u:"https://careers.uhhospitals.org/"},{n:"LinkedIn",u:"https://www.linkedin.com/jobs/search/?keywords=university+hospitals+cleveland+cybersecurity+analyst"}]},
+  {title:"Privacy Analyst", org:"University Hospitals", sector:"Healthcare", cat:"privacy", seniority:"Entry", type:"Privacy", desc:"Supports HIPAA privacy compliance, data subject request fulfillment, and privacy impact assessments across UH's network of hospitals and physician practices.", career:"https://careers.uhhospitals.org/", boards:[{n:"UH Careers",u:"https://careers.uhhospitals.org/"},{n:"IAPP Job Board",u:"https://iapp.org/jobs/?s=privacy+analyst+ohio"},{n:"LinkedIn",u:"https://www.linkedin.com/jobs/search/?keywords=university+hospitals+privacy+analyst"}]},
+  // BAKERHOSTETLER
+  {title:"Privacy & Data Security Consultant (Non-Attorney Staff)", org:"BakerHostetler", sector:"Legal", cat:"privacy", seniority:"Mid", type:"Privacy", desc:"Non-attorney professional staff role supporting BakerHostetler's nationally recognized Privacy & Data Security practice. Assists on breach investigations, client advisory, and incident response coordination.", career:"https://www.bakerlaw.com/careers/professional-staff/open-positions/", boards:[{n:"BakerHostetler Staff Openings",u:"https://www.bakerlaw.com/careers/professional-staff/open-positions/"},{n:"LinkedIn",u:"https://www.linkedin.com/jobs/search/?keywords=bakerhostetler+privacy+cybersecurity+staff"}]},
+  // HYLAND
+  {title:"Security Engineer Intern", org:"Hyland", sector:"Software / Technology", cat:"intern", seniority:"Internship", type:"Tech", desc:"Westlake-based software company offering security engineering internships. Work with experienced security staff in a product-focused environment. Known for strong intern culture and intern-to-hire pipeline.", career:"https://careers-hyland.icims.com/jobs/intro", boards:[{n:"Hyland Careers",u:"https://careers-hyland.icims.com/jobs/intro"},{n:"Handshake",u:"https://joinhandshake.com/jobs/?query=hyland+security+intern"},{n:"LinkedIn",u:"https://www.linkedin.com/company/hyland-software/jobs"}]},
+  {title:"Information Security Analyst", org:"Hyland", sector:"Software / Technology", cat:"tech", seniority:"Entry", type:"Tech", desc:"Entry-level security role at Hyland (maker of OnBase). Supports monitoring, access management, and compliance for a global SaaS platform serving healthcare, government, and financial services.", career:"https://careers-hyland.icims.com/jobs/intro", boards:[{n:"Hyland Careers",u:"https://careers-hyland.icims.com/jobs/intro"},{n:"Indeed",u:"https://www.indeed.com/cmp/Hyland-Software"},{n:"LinkedIn",u:"https://www.linkedin.com/company/hyland-software/jobs"}]},
+  // GOODYEAR
+  {title:"Cybersecurity Analyst", org:"Goodyear", sector:"Manufacturing", cat:"tech", seniority:"Entry", type:"Tech", desc:"Akron-based Fortune 500 with a large IT security function. Entry analysts support monitoring, incident response, and vulnerability tracking. International exposure possible given Goodyear's global footprint.", career:"https://jobs.goodyear.com/", boards:[{n:"Goodyear Careers",u:"https://jobs.goodyear.com/"},{n:"LinkedIn",u:"https://www.linkedin.com/jobs/search/?keywords=goodyear+cybersecurity+analyst"}]},
+  // LINCOLN ELECTRIC
+  {title:"IT Security Analyst", org:"Lincoln Electric", sector:"Manufacturing", cat:"tech", seniority:"Entry", type:"Tech", desc:"Cleveland-based global welding products manufacturer. Entry IT security role supporting security operations, access management, and compliance for a company with operations in over 160 countries.", career:"https://jobs.lincolnelectric.com/", boards:[{n:"Lincoln Electric Careers",u:"https://jobs.lincolnelectric.com/"},{n:"LinkedIn",u:"https://www.linkedin.com/jobs/search/?keywords=lincoln+electric+IT+security"}]},
+  // STERIS
+  {title:"Information Security Analyst", org:"Steris", sector:"Healthcare", cat:"tech", seniority:"Entry", type:"Tech", desc:"Global healthcare sterilization and surgical products company. Entry-level security roles support protecting clinical and operational systems in a highly regulated environment.", career:"https://jobs.steris.com/", boards:[{n:"Steris Careers",u:"https://jobs.steris.com/"},{n:"LinkedIn",u:"https://www.linkedin.com/jobs/search/?keywords=steris+information+security+analyst"}]},
+  {title:"Privacy & Compliance Analyst", org:"Steris", sector:"Healthcare", cat:"grc", seniority:"Entry", type:"GRC", desc:"Supports Steris's compliance program including HIPAA and GDPR for global operations. A good fit for compliance, public health, or information science graduates.", career:"https://jobs.steris.com/", boards:[{n:"Steris Careers",u:"https://jobs.steris.com/"},{n:"IAPP Job Board",u:"https://iapp.org/jobs/?s=privacy+compliance+analyst"},{n:"LinkedIn",u:"https://www.linkedin.com/jobs/search/?keywords=steris+privacy+compliance+analyst"}]},
+  // ERIE INSURANCE
+  {title:"Cybersecurity Analyst", org:"Erie Insurance", sector:"Insurance", cat:"tech", seniority:"Entry", type:"Tech", desc:"Fortune 500 P&C insurer. Entry cybersecurity roles support threat monitoring and incident response across a major regional insurer's enterprise environment.", career:"https://careers.erieinsurance.com/", boards:[{n:"Erie Insurance Careers",u:"https://careers.erieinsurance.com/"},{n:"LinkedIn",u:"https://www.linkedin.com/jobs/search/?keywords=erie+insurance+cybersecurity+analyst"}]},
+  {title:"IT Risk & Compliance Intern", org:"Erie Insurance", sector:"Insurance", cat:"intern", seniority:"Internship", type:"GRC", desc:"Internship supporting IT risk management and compliance programs at a major regional insurer. An excellent introduction to GRC in a financial services environment.", career:"https://careers.erieinsurance.com/", boards:[{n:"Erie Insurance Careers",u:"https://careers.erieinsurance.com/"},{n:"Handshake",u:"https://joinhandshake.com/jobs/?query=erie+insurance+IT+risk+intern"}]},
+  // CITY OF CLEVELAND
+  {title:"IT Security Analyst", org:"City of Cleveland", sector:"Government", cat:"tech", seniority:"Entry", type:"Tech", desc:"Municipal government IT security role protecting the City of Cleveland's technology infrastructure. Civil service exam may be required. Good entry point into public sector cybersecurity.", career:"https://www.governmentjobs.com/careers/cleveland", boards:[{n:"City of Cleveland Jobs",u:"https://www.governmentjobs.com/careers/cleveland"},{n:"Indeed",u:"https://www.indeed.com/jobs?q=city+of+cleveland+IT+security"}]},
+  // CWRU
+  {title:"Information Security Analyst", org:"Case Western Reserve University", sector:"Higher Education", cat:"tech", seniority:"Entry", type:"Tech", desc:"CWRU IT security team supports one of Ohio's leading research universities. Entry analysts work on network security, endpoint protection, and research data security in a complex academic environment.", career:"https://case.edu/jobs/", boards:[{n:"CWRU Jobs",u:"https://case.edu/jobs/"},{n:"HigherEdJobs",u:"https://www.higheredjobs.com/search/?SearchPhrase=cwru+information+security"},{n:"LinkedIn",u:"https://www.linkedin.com/jobs/search/?keywords=case+western+reserve+university+information+security"}]},
+  // YSU
+  {title:"IT Security Analyst", org:"Youngstown State University", sector:"Higher Education", cat:"tech", seniority:"Entry", type:"Tech", desc:"YSU IT department security role protecting the university's network, systems, and research data. Good entry-level, public-sector adjacent position for recent graduates.", career:"https://jobs.ysu.edu/", boards:[{n:"YSU Jobs",u:"https://jobs.ysu.edu/"},{n:"LinkedIn",u:"https://www.linkedin.com/jobs/search/?keywords=youngstown+state+IT+security+analyst"}]},
+  // SISTERS OF CHARITY
+  {title:"Information Security Analyst", org:"Sisters of Charity Health System", sector:"Healthcare", cat:"tech", seniority:"Entry", type:"Tech", desc:"Nonprofit Catholic health system in Cleveland. Entry security role supporting HIPAA compliance and cybersecurity operations across hospital and community health entities.", career:"https://www.sistersofcharityhealth.org/careers/", boards:[{n:"Sisters of Charity Careers",u:"https://www.sistersofcharityhealth.org/careers/"},{n:"LinkedIn",u:"https://www.linkedin.com/jobs/search/?keywords=sisters+of+charity+health+system+security"}]},
+  // THIRD FEDERAL
+  {title:"IT Security Analyst", org:"Third Federal Savings and Loan", sector:"Financial Services", cat:"tech", seniority:"Entry", type:"Tech", desc:"Entry-level IT security role at a well-regarded Cleveland mutual savings institution. Smaller security team means broad exposure across security operations, compliance, and risk.", career:"https://www.thirdfederal.com/about-us/careers", boards:[{n:"Third Federal Careers",u:"https://www.thirdfederal.com/about-us/careers"},{n:"LinkedIn",u:"https://www.linkedin.com/jobs/search/?keywords=third+federal+savings+IT+security"}]},
+  // FIRST MUTUAL HOLDING
+  {title:"IT Security Analyst", org:"First Mutual Holding Company", sector:"Financial Services", cat:"tech", seniority:"Entry", type:"Tech", desc:"FMHC supports multiple mutual savings banks and has an IT/information security function (AlloBaas subsidiary). Entry security roles support protecting banking systems and customer data.", career:"https://www.firstmutualholding.com/join-our-team/", boards:[{n:"First Mutual Holding Careers",u:"https://www.firstmutualholding.com/join-our-team/"},{n:"LinkedIn",u:"https://www.linkedin.com/company/first-mutual-holding-co/jobs"}]},
+  // AVIENT
+  {title:"IT Security Analyst", org:"Avient Corporation", sector:"Manufacturing", cat:"tech", seniority:"Entry", type:"Tech", desc:"Avient is a specialty polymer and materials science company. IT security roles protect a global manufacturing company's systems and data in a highly regulated environment.", career:"https://jobs.avient.com/", boards:[{n:"Avient Careers",u:"https://jobs.avient.com/"},{n:"LinkedIn",u:"https://www.linkedin.com/jobs/search/?keywords=avient+IT+security"}]},
+  // CENTERS FOR FAMILIES
+  {title:"IT / Data Security Intern", org:"Centers for Families and Children", sector:"Nonprofit", cat:"intern", seniority:"Internship", type:"Tech", desc:"Cleveland nonprofit offering social services. IT and data security internship opportunities support protecting sensitive client data in a community health and social services context.", career:"https://www.cfcadvances.org/careers/", boards:[{n:"CFC Careers",u:"https://www.cfcadvances.org/careers/"},{n:"Idealist",u:"https://www.idealist.org/en/jobs?q=security+intern+cleveland"}]},
+  // SECURITY-ADJACENT
+  {title:"Identity & Access Management Analyst", org:"Multiple NEOCC Members", sector:"Various", cat:"adj", seniority:"Entry", type:"Security-Adjacent", desc:"IAM roles span the NEOCC membership — healthcare (Cleveland Clinic, UH), finance (KeyBank, Progressive), and technology (Hyland, Eaton). Often sits in IT Operations with close ties to security. A strong entry pathway for new graduates.", career:"https://www.linkedin.com/jobs/search/?keywords=identity+access+management+analyst+Cleveland", boards:[{n:"LinkedIn",u:"https://www.linkedin.com/jobs/search/?keywords=identity+access+management+analyst+cleveland+ohio"},{n:"Indeed",u:"https://www.indeed.com/jobs?q=identity+access+management+analyst+cleveland+ohio"},{n:"Dice",u:"https://www.dice.com/jobs?q=identity+access+management+analyst&location=cleveland"}]},
+  {title:"Enterprise Architect (Security Focus)", org:"Multiple NEOCC Members", sector:"Various", cat:"adj", seniority:"Senior", type:"Security-Adjacent", desc:"Many NEOCC members (KeyBank, Eaton, Sherwin-Williams, Cleveland Clinic) hire Enterprise Architects with a strong security focus. These roles shape security-influencing architecture decisions and typically sit outside the CISO organization.", career:"https://www.linkedin.com/jobs/search/?keywords=enterprise+architect+security+Cleveland+Ohio", boards:[{n:"LinkedIn",u:"https://www.linkedin.com/jobs/search/?keywords=enterprise+architect+security+cleveland+ohio"},{n:"Indeed",u:"https://www.indeed.com/jobs?q=enterprise+architect+security+cleveland+ohio"}]},
+];
+
+// ─── STATE ───────────────────────────────────────────────────────
+let activeCat = 'all';
+
+// ─── HELPERS ─────────────────────────────────────────────────────
+function bc(s){ return {Internship:'b-intern',Entry:'b-entry',Mid:'b-mid',Senior:'b-senior',Executive:'b-exec'}[s]||'b-entry'; }
+function bt(t){ return {Tech:'b-tech',GRC:'b-grc',Privacy:'b-priv','Security-Adjacent':'b-adj'}[t]||'b-adj'; }
+
+// ─── PANEL SWITCHING ─────────────────────────────────────────────
+function switchPanel(id, el){
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-tab').forEach(b => b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  el.classList.add('active');
+  if(id === 'directory') renderDir();
+}
+
+// ─── CATEGORY FILTER ─────────────────────────────────────────────
+function setCat(c, el){
+  activeCat = c;
+  document.querySelectorAll('.pill').forEach(p => p.classList.remove('active'));
+  el.classList.add('active');
+  renderJobs();
+}
+
+// ─── RENDER JOBS ─────────────────────────────────────────────────
+function renderJobs(){
+  const q = (document.getElementById('q').value||'').toLowerCase();
+  const seniority = document.getElementById('seniority').value;
+  const sort = document.getElementById('sort').value;
+
+  let f = jobs.filter(j => {
+    if(activeCat === 'intern' && j.seniority !== 'Internship') return false;
+    if(activeCat !== 'all' && activeCat !== 'intern' && j.cat !== activeCat) return false;
+    if(seniority !== 'all' && j.seniority !== seniority) return false;
+    if(q){ const h = (j.title+j.org+j.desc+j.type+j.sector+j.seniority).toLowerCase(); if(!h.includes(q)) return false; }
+    return true;
+  });
+
+  f.sort((a,b) => {
+    if(sort==='title') return a.title.localeCompare(b.title);
+    if(sort==='org') return a.org.localeCompare(b.org);
+    if(sort==='seniority') return (SO[a.seniority]||0)-(SO[b.seniority]||0);
+    if(sort==='sector') return a.sector.localeCompare(b.sector);
+    return 0;
+  });
+
+  const internN = jobs.filter(j=>j.seniority==='Internship').length;
+  const entryN  = jobs.filter(j=>j.seniority==='Entry').length;
+  document.getElementById('job-stats').innerHTML =
+    `<div class="stat-chip">Showing <strong>${f.length}</strong> of ${jobs.length} listings</div>`+
+    `<div class="stat-chip"><strong>${internN}</strong> internships</div>`+
+    `<div class="stat-chip"><strong>${entryN}</strong> entry-level roles</div>`;
+
+  if(!f.length){
+    document.getElementById('job-grid').innerHTML = '<div class="no-results">No listings match your filters — try broadening your search.</div>';
+    return;
+  }
+
+  document.getElementById('job-grid').innerHTML = f.map(j=>`
+    <div class="job-card">
+      <div class="job-card-top">
+        <div class="job-title-block">
+          <div class="job-title">${j.title}</div>
+          <div class="job-org">${j.org} &nbsp;&middot;&nbsp; ${j.sector}</div>
+        </div>
+        <div class="badge-row">
+          <span class="badge ${bc(j.seniority)}">${j.seniority}</span>
+          <span class="badge ${bt(j.type)}">${j.type}</span>
+        </div>
+      </div>
+      <p class="job-desc">${j.desc}</p>
+      <div class="job-links">
+        <a class="job-link primary" href="${j.career}" target="_blank" rel="noopener">Employer career page</a>
+        ${j.boards.map(b=>`<a class="job-link" href="${b.u}" target="_blank" rel="noopener">${b.n}</a>`).join('')}
+      </div>
+    </div>`).join('');
+}
+
+// ─── RENDER DIRECTORY ────────────────────────────────────────────
+function renderDir(){
+  const q   = (document.getElementById('dq').value||'').toLowerCase();
+  const sec = document.getElementById('dsector').value;
+
+  let f = employers.filter(e => {
+    if(sec !== 'all' && e.sector !== sec) return false;
+    if(q && !(e.name+e.sector).toLowerCase().includes(q)) return false;
+    return true;
+  });
+  f.sort((a,b) => a.name.localeCompare(b.name));
+
+  document.getElementById('dir-stats').innerHTML =
+    `<div class="stat-chip">Showing <strong>${f.length}</strong> of ${employers.length} voting member organizations</div>`;
+
+  document.getElementById('dir-grid').innerHTML = f.map(e=>`
+    <div class="dir-card">
+      <div class="dir-name">${e.name}</div>
+      <div class="dir-sector">${e.sector}</div>
+      <div class="dir-links">
+        <a class="dir-link primary" href="${e.career}" target="_blank" rel="noopener">Career page</a>
+        <a class="dir-link" href="${e.li}" target="_blank" rel="noopener">LinkedIn jobs</a>
+        <a class="dir-link" href="${e.indeed}" target="_blank" rel="noopener">Indeed</a>
+      </div>
+    </div>`).join('');
+}
+
+// ─── INIT ────────────────────────────────────────────────────────
+renderJobs();
+</script>
+</body>
+</html>
