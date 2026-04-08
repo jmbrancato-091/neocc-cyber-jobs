@@ -377,9 +377,9 @@
   <div class="header-inner">
     <div class="header-top">
       <div class="logo-block">
-        <div class="logo-tag">Northeast Ohio CyberConsortium — Voting Members</div>
+        <div class="logo-tag">Northeast Ohio CyberConsortium</div>
         <h1>Cybersecurity &amp; Privacy Job Resource</h1>
-        <p class="header-sub">Security, GRC, privacy, and security-adjacent roles across 30 NEOCC voting member organizations. Entry-level roles and internships highlighted for students and career changers.</p>
+        <p class="header-sub">Security, GRC, privacy, and security-adjacent roles across all NEOCC member organizations. Entry-level roles and internships highlighted for students and career changers.</p>
       </div>
       <div class="updated-tag" id="updated-tag">Updated: loading...</div>
     </div>
@@ -459,7 +459,7 @@
 
 <script>
 // ─── LAST UPDATED ───────────────────────────────────────────────
-const LAST_UPDATED = "April 7, 2025";
+const LAST_UPDATED = "April 8, 2026";
 document.getElementById('updated-tag').textContent = "Updated: " + LAST_UPDATED;
 
 // ─── DATA ───────────────────────────────────────────────────────
@@ -471,7 +471,8 @@ const employers = [
   {name:"Avient Corporation",                 sector:"Manufacturing",       career:"https://jobs.avient.com/",                                                    li:"https://www.linkedin.com/company/avient/jobs",                            indeed:"https://www.indeed.com/cmp/Avient-Corporation"},
   {name:"BakerHostetler",                     sector:"Legal",               career:"https://www.bakerlaw.com/careers/professional-staff/open-positions/",         li:"https://www.linkedin.com/company/bakerhostetler/jobs",                   indeed:"https://www.indeed.com/cmp/Baker-Hostetler"},
   {name:"Case Western Reserve University",    sector:"Higher Education",    career:"https://case.edu/jobs/",                                                      li:"https://www.linkedin.com/school/case-western-reserve-university/jobs",   indeed:"https://www.indeed.com/cmp/Case-Western-Reserve-University"},
-  {name:"Centers for Families and Children",  sector:"Nonprofit",           career:"https://www.cfcadvances.org/careers/",                                        li:"https://www.linkedin.com/company/centers-for-families-and-children/jobs",indeed:"https://www.indeed.com/cmp/Centers-for-Families-and-Children"},
+  {name:"The Centers",                         sector:"Nonprofit",           career:"https://www.cfcadvances.org/careers/",                                        li:"https://www.linkedin.com/company/centers-for-families-and-children/jobs",indeed:"https://www.indeed.com/cmp/Centers-for-Families-and-Children"},
+  {name:"McMaster-Carr",                        sector:"Manufacturing",       career:"https://www.mcmaster.com/careers",                                             li:"https://www.linkedin.com/company/mcmaster-carr/jobs",                     indeed:"https://www.indeed.com/cmp/Mcmaster-Carr"},
   {name:"City of Cleveland",                  sector:"Government",          career:"https://www.governmentjobs.com/careers/cleveland",                            li:"https://www.linkedin.com/company/city-of-cleveland/jobs",                indeed:"https://www.indeed.com/jobs?q=city+of+cleveland+IT+security"},
   {name:"Cleveland Clinic",                   sector:"Healthcare",          career:"https://jobs.clevelandclinic.org/it-and-cyber-security/",                     li:"https://www.linkedin.com/company/cleveland-clinic/jobs",                 indeed:"https://www.indeed.com/cmp/Cleveland-Clinic"},
   {name:"Cleveland-Cliffs",                   sector:"Manufacturing",       career:"https://careers.clevelandcliffs.com/",                                        li:"https://www.linkedin.com/company/cleveland-cliffs/jobs",                 indeed:"https://www.indeed.com/cmp/Cleveland-cliffs"},
@@ -562,7 +563,7 @@ const jobs = [
   // AVIENT
   {title:"IT Security Analyst", org:"Avient Corporation", sector:"Manufacturing", cat:"tech", seniority:"Entry", type:"Tech", desc:"Avient is a specialty polymer and materials science company. IT security roles protect a global manufacturing company's systems and data in a highly regulated environment.", career:"https://jobs.avient.com/", boards:[{n:"Avient Careers",u:"https://jobs.avient.com/"},{n:"LinkedIn",u:"https://www.linkedin.com/jobs/search/?keywords=avient+IT+security"}]},
   // CENTERS FOR FAMILIES
-  {title:"IT / Data Security Intern", org:"Centers for Families and Children", sector:"Nonprofit", cat:"intern", seniority:"Internship", type:"Tech", desc:"Cleveland nonprofit offering social services. IT and data security internship opportunities support protecting sensitive client data in a community health and social services context.", career:"https://www.cfcadvances.org/careers/", boards:[{n:"CFC Careers",u:"https://www.cfcadvances.org/careers/"},{n:"Idealist",u:"https://www.idealist.org/en/jobs?q=security+intern+cleveland"}]},
+  {title:"IT / Data Security Intern", org:"The Centers", sector:"Nonprofit", cat:"intern", seniority:"Internship", type:"Tech", desc:"Cleveland nonprofit offering social services. IT and data security internship opportunities support protecting sensitive client data in a community health and social services context.", career:"https://www.cfcadvances.org/careers/", boards:[{n:"The Centers Careers",u:"https://www.cfcadvances.org/careers/"},{n:"Idealist",u:"https://www.idealist.org/en/jobs?q=security+intern+cleveland"}]},
   // SECURITY-ADJACENT
   {title:"Identity & Access Management Analyst", org:"Multiple NEOCC Members", sector:"Various", cat:"adj", seniority:"Entry", type:"Security-Adjacent", desc:"IAM roles span the NEOCC membership — healthcare (Cleveland Clinic, UH), finance (KeyBank, Progressive), and technology (Hyland, Eaton). Often sits in IT Operations with close ties to security. A strong entry pathway for new graduates.", career:"https://www.linkedin.com/jobs/search/?keywords=identity+access+management+analyst+Cleveland", boards:[{n:"LinkedIn",u:"https://www.linkedin.com/jobs/search/?keywords=identity+access+management+analyst+cleveland+ohio"},{n:"Indeed",u:"https://www.indeed.com/jobs?q=identity+access+management+analyst+cleveland+ohio"},{n:"Dice",u:"https://www.dice.com/jobs?q=identity+access+management+analyst&location=cleveland"}]},
   {title:"Enterprise Architect (Security Focus)", org:"Multiple NEOCC Members", sector:"Various", cat:"adj", seniority:"Senior", type:"Security-Adjacent", desc:"Many NEOCC members (KeyBank, Eaton, Sherwin-Williams, Cleveland Clinic) hire Enterprise Architects with a strong security focus. These roles shape security-influencing architecture decisions and typically sit outside the CISO organization.", career:"https://www.linkedin.com/jobs/search/?keywords=enterprise+architect+security+Cleveland+Ohio", boards:[{n:"LinkedIn",u:"https://www.linkedin.com/jobs/search/?keywords=enterprise+architect+security+cleveland+ohio"},{n:"Indeed",u:"https://www.indeed.com/jobs?q=enterprise+architect+security+cleveland+ohio"}]},
@@ -659,7 +660,7 @@ function renderDir(){
   f.sort((a,b) => a.name.localeCompare(b.name));
 
   document.getElementById('dir-stats').innerHTML =
-    `<div class="stat-chip">Showing <strong>${f.length}</strong> of ${employers.length} voting member organizations</div>`;
+    `<div class="stat-chip">Showing <strong>${f.length}</strong> of ${employers.length} member organizations</div>`;
 
   document.getElementById('dir-grid').innerHTML = f.map(e=>`
     <div class="dir-card">
